@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض النخبة للتكاتك الفاخرة | Luxury Tuktuk Showroom</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            400: '#FACC15',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                            custom: '#D4AF37',
+                            light: '#F3E5AB'
+                        },
+                        darkBg: '#0B0F17',
+                        cardBg: '#131B2E',
+                        cardBorder: '#1E293B'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #0B0F17;
+            color: #F8FAFC;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF5D1 0%, #D4AF37 50%, #AA771C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA771C 100%);
+        }
+        .gold-border {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+        }
+        .gold-glow-hover:hover {
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
+        }
+        .glass-panel {
+            background: rgba(19, 27, 46, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col selection:bg-gold-custom selection:text-black">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-amber-950 via-amber-900 to-amber-950 text-gold-light text-xs sm:text-sm py-2 px-4 text-center border-b border-gold/20 font-medium tracking-wide">
+        <span><i class="fa-solid fa-crown text-gold-custom ml-1"></i> المعرض الرسمي المعتمد للتكاتك الفاخرة | للطلب والاستفسار الفوري: <a href="tel:0924381507" class="underline font-bold hover:text-white dir-ltr inline-block">0924381507</a></span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-gold/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 rounded-xl gold-gradient-bg flex items-center justify-center text-black shadow-lg text-2xl font-black">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <div>
+                    <span class="text-xl sm:text-2xl font-black tracking-wider gold-gradient-text">النخبة للتكاتك</span>
+                    <span class="block text-[10px] sm:text-xs text-slate-400 tracking-widest uppercase">Luxury Tuktuk Elite</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 space-x-reverse text-sm font-semibold">
+                <a href="#home" class="hover:text-gold-custom transition-colors">الرئيسية</a>
+                <a href="#catalog" class="hover:text-gold-custom transition-colors">تشكيلة الموديلات</a>
+                <a href="#features" class="hover:text-gold-custom transition-colors">مميزات الفخامة</a>
+                <a href="#contact" class="hover:text-gold-custom transition-colors">اتصل بنا</a>
+            </nav>
+
+            <!-- Quick Action Button -->
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="tel:0924381507" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold px-5 py-2.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 text-sm">
+                    <i class="fa-solid fa-phone-volume text-black"></i>
+                    <span>0924381507</span>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="menu-btn" class="md:hidden text-gold-custom text-2xl p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-gold/20 px-6 py-4 space-y-3">
+            <a href="#home" class="block py-2 hover:text-gold-custom font-medium">الرئيسية</a>
+            <a href="#catalog" class="block py-2 hover:text-gold-custom font-medium">تشكيلة الموديلات</a>
+            <a href="#features" class="block py-2 hover:text-gold-custom font-medium">مميزات الفخامة</a>
+            <a href="#contact" class="block py-2 hover:text-gold-custom font-medium">اتصل بنا</a>
+            <div class="pt-2">
+                <a href="tel:0924381507" class="block w-full text-center gold-gradient-bg text-black font-bold py-3 rounded-xl shadow">
+                    <i class="fa-solid fa-phone-volume ml-2"></i> اتصل الآن: 0924381507
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden pt-20 pb-32 lg:pt-32 lg:pb-40">
+        <!-- Background Glow Orbs -->
+        <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 left-10 w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-gold/30 text-gold-light text-xs sm:text-sm mb-6 animate-pulse">
+                <i class="fa-solid fa-star text-gold-custom"></i>
+                <span>المعرض الأول المعتمد في الشرق الأوسط وأفريقيا</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-tight">
+                فخامة النقل الحضري مع <br/>
+                <span class="gold-gradient-text">تشكيلة التكاتك الأسطورية</span>
+            </h1>
+            
+            <p class="max-w-3xl mx-auto text-base sm:text-xl text-slate-300 mb-10 leading-relaxed font-light">
+                نقدم لك أرقى الموديلات العالمية الأصلية المستخرجة من السجلات الرسمية بدقة متناهية. جودة بلا حدود، تصميمات استثنائية، وأسعار تنافسية.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#catalog" class="w-full sm:w-auto gold-gradient-bg text-black font-extrabold px-8 py-4 rounded-xl shadow-xl hover:opacity-95 transition-all text-base sm:text-lg flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-car-side"></i>
+                    <span>استعرض الموديلات المتاحة</span>
+                </a>
+                <a href="https://wa.me/249924381507?text=مرحباً، أريغب في الاستفسار عن التكاتك الفاخرة المتاحة في المعرض" target="_blank" class="w-full sm:w-auto glass-panel border border-gold/40 text-gold-light hover:text-white font-bold px-8 py-4 rounded-xl transition-all text-base sm:text-lg flex items-center justify-center gap-3 hover:bg-gold/10">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                    <span>تواصل عبر واتساب</span>
+                </a>
+            </div>
+
+            <!-- Quick Info Cards Bar -->
+            <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="glass-panel p-6 rounded-2xl border border-gold/20 text-center">
+                    <div class="text-gold-custom text-3xl mb-2"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="font-bold text-lg mb-1">ضمان أصلي 100%</h3>
+                    <p class="text-xs text-slate-400">جميع الموديلات أصلية ومعتمدة</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border border-gold/20 text-center">
+                    <div class="text-gold-custom text-3xl mb-2"><i class="fa-solid fa-headset"></i></div>
+                    <h3 class="font-bold text-lg mb-1">خدمة عملاء مميزة</h3>
+                    <p class="text-xs text-slate-400">دعم مباشر عبر الرقم 0924381507</p>
+                </div>
+                <div class="glass-panel p-6 rounded-2xl border border-gold/20 text-center">
+                    <div class="text-gold-custom text-3xl mb-2"><i class="fa-solid fa-file-contract"></i></div>
+                    <h3 class="font-bold text-lg mb-1">بيانات موثوقة</h3>
+                    <p class="text-xs text-slate-400">مستخرجة مباشرة من السجلات الرسمية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Catalog Section (Google Sheet Data) -->
+    <section id="catalog" class="py-20 relative bg-gradient-to-b from-darkBg via-[#0F172A] to-darkBg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-gold-custom text-sm font-bold tracking-widest uppercase mb-2 block">السجل الرسمي المعتمد</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight mb-4">تشكيلة التكاتك الفاخرة</h2>
+                <div class="w-24 h-1 gold-gradient-bg mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base">
+                    استعرض القناة الرسمية للموديلات المتوفرة في الجدول المعتمد. لكل طراز هيبته وتصميمه الهندسي الفريد.
+                </p>
+            </div>
+
+            <!-- Tuktuk Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="tuktuk-grid">
+                
+                <!-- Item 1: بلو استار (Blue Star) -->
+                <div class="glass-panel rounded-3xl p-6 border gold-border gold-glow transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div>
+                        <!-- Header badge & icon -->
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-gold-light border border-amber-500/30">
+                                موديل 2025
+                            </span>
+                            <div class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-black text-xl font-bold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                        </div>
+
+                        <!-- Title & English Name -->
+                        <h3 class="text-2xl font-black mb-1 text-white group-hover:text-gold-custom transition-colors">بلو استار</h3>
+                        <p class="text-xs text-slate-400 font-mono mb-6 uppercase tracking-wider">Blue Star Elite Edition</p>
+
+                        <!-- Luxury Visual Graphic Box (Instead of fake images) -->
+                        <div class="w-full h-40 rounded-2xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 border border-gold/20 flex flex-col items-center justify-center relative overflow-hidden mb-6 p-4 text-center">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0,transparent_70%)]"></div>
+                            <i class="fa-solid fa-crown text-gold-custom text-4xl mb-2 opacity-80"></i>
+                            <span class="text-sm font-bold text-gold-light tracking-wide">طراز فاخر فائق الأداء</span>
+                            <span class="text-[10px] text-slate-400 mt-1">تصميم معتمد وخاص</span>
+                        </div>
+
+                        <!-- Specs List -->
+                        <div class="space-y-3 mb-6 border-t border-slate-800 pt-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">سنة الصنع:</span>
+                                <span class="font-bold text-slate-200">2025</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">الحالة:</span>
+                                <span class="text-emerald-400 font-bold flex items-center gap-1"><i class="fa-solid fa-circle text-[8px]"></i> متوفر بالمعرض</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">السعر المعتمد:</span>
+                                <span class="font-extrabold text-gold-custom text-lg">20,000,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="space-y-2">
+                        <button onclick="openOrderModal('بلو استار (Blue Star)', '20,000,000', '2025')" class="w-full gold-gradient-bg text-black font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>احجز أو اطلب الآن</span>
+                        </button>
+                        <a href="tel:0924381507" class="w-full glass-panel border border-gold/30 text-slate-200 hover:text-gold-custom py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-xs font-semibold">
+                            <i class="fa-solid fa-phone text-gold-custom"></i>
+                            <span>اتصل بالرئيسي: 0924381507</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 2: عدن استار (Aden Star) -->
+                <div class="glass-panel rounded-3xl p-6 border gold-border gold-glow transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                                الطراز الملكي
+                            </span>
+                            <div class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-black text-xl font-bold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-black mb-1 text-white group-hover:text-gold-custom transition-colors">عدن استار</h3>
+                        <p class="text-xs text-slate-400 font-mono mb-6 uppercase tracking-wider">Aden Star Luxury Edition</p>
+
+                        <div class="w-full h-40 rounded-2xl bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 border border-gold/20 flex flex-col items-center justify-center relative overflow-hidden mb-6 p-4 text-center">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0,transparent_70%)]"></div>
+                            <i class="fa-solid fa-shield text-gold-custom text-4xl mb-2 opacity-80"></i>
+                            <span class="text-sm font-bold text-gold-light tracking-wide">فخامة وتصاميم عصرية</span>
+                            <span class="text-[10px] text-slate-400 mt-1">حسب المواصفات الرسمية</span>
+                        </div>
+
+                        <div class="space-y-3 mb-6 border-t border-slate-800 pt-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">سنة الصنع:</span>
+                                <span class="font-bold text-slate-200">قياسي / معتمد</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">الحالة:</span>
+                                <span class="text-amber-400 font-bold flex items-center gap-1"><i class="fa-solid fa-circle text-[8px]"></i> متاح للاستعلام</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">السعر المعتمد:</span>
+                                <span class="font-extrabold text-gold-custom text-base">السعر عند الطلب</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <button onclick="openOrderModal('عدن استار (Aden Star)', 'السعر عند الطلب', 'متاح للاستعلام')" class="w-full gold-gradient-bg text-black font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>احجز أو اطلب الآن</span>
+                        </button>
+                        <a href="tel:0924381507" class="w-full glass-panel border border-gold/30 text-slate-200 hover:text-gold-custom py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-xs font-semibold">
+                            <i class="fa-solid fa-phone text-gold-custom"></i>
+                            <span>اتصل بالرئيسي: 0924381507</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 3: زنجيشن (Zongshen) -->
+                <div class="glass-panel rounded-3xl p-6 border gold-border gold-glow transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                                الطراز المعتمد
+                            </span>
+                            <div class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-black text-xl font-bold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-black mb-1 text-white group-hover:text-gold-custom transition-colors">زنجيشن</h3>
+                        <p class="text-xs text-slate-400 font-mono mb-6 uppercase tracking-wider">Zongshen Professional</p>
+
+                        <div class="w-full h-40 rounded-2xl bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 border border-gold/20 flex flex-col items-center justify-center relative overflow-hidden mb-6 p-4 text-center">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0,transparent_70%)]"></div>
+                            <i class="fa-solid fa-gears text-gold-custom text-4xl mb-2 opacity-80"></i>
+                            <span class="text-sm font-bold text-gold-light tracking-wide">أداء قوي ومتين</span>
+                            <span class="text-[10px] text-slate-400 mt-1">حسب المواصفات الرسمية</span>
+                        </div>
+
+                        <div class="space-y-3 mb-6 border-t border-slate-800 pt-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">سنة الصنع:</span>
+                                <span class="font-bold text-slate-200">قياسي / معتمد</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">الحالة:</span>
+                                <span class="text-amber-400 font-bold flex items-center gap-1"><i class="fa-solid fa-circle text-[8px]"></i> متاح للاستعلام</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">السعر المعتمد:</span>
+                                <span class="font-extrabold text-gold-custom text-base">السعر عند الطلب</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <button onclick="openOrderModal('زنجيشن (Zongshen)', 'السعر عند الطلب', 'متاح للاستعلام')" class="w-full gold-gradient-bg text-black font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>احجز أو اطلب الآن</span>
+                        </button>
+                        <a href="tel:0924381507" class="w-full glass-panel border border-gold/30 text-slate-200 hover:text-gold-custom py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-xs font-semibold">
+                            <i class="fa-solid fa-phone text-gold-custom"></i>
+                            <span>اتصل بالرئيسي: 0924381507</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 4: سي إم جي (CMG) -->
+                <div class="glass-panel rounded-3xl p-6 border gold-border gold-glow transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                                الطراز المعتمد
+                            </span>
+                            <div class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-black text-xl font-bold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-shield-cat"></i>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-black mb-1 text-white group-hover:text-gold-custom transition-colors">سي إم جي</h3>
+                        <p class="text-xs text-slate-400 font-mono mb-6 uppercase tracking-wider">CMG Classic Edition</p>
+
+                        <div class="w-full h-40 rounded-2xl bg-gradient-to-br from-slate-900 via-purple-950 to-slate-900 border border-gold/20 flex flex-col items-center justify-center relative overflow-hidden mb-6 p-4 text-center">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0,transparent_70%)]"></div>
+                            <i class="fa-solid fa-award text-gold-custom text-4xl mb-2 opacity-80"></i>
+                            <span class="text-sm font-bold text-gold-light tracking-wide">جودة التصنيع الفائق</span>
+                            <span class="text-[10px] text-slate-400 mt-1">حسب المواصفات الرسمية</span>
+                        </div>
+
+                        <div class="space-y-3 mb-6 border-t border-slate-800 pt-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">سنة الصنع:</span>
+                                <span class="font-bold text-slate-200">قياسي / معتمد</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">الحالة:</span>
+                                <span class="text-amber-400 font-bold flex items-center gap-1"><i class="fa-solid fa-circle text-[8px]"></i> متاح للاستعلام</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">السعر المعتمد:</span>
+                                <span class="font-extrabold text-gold-custom text-base">السعر عند الطلب</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <button onclick="openOrderModal('سي إم جي (CMG)', 'السعر عند الطلب', 'متاح للاستعلام')" class="w-full gold-gradient-bg text-black font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>احجز أو اطلب الآن</span>
+                        </button>
+                        <a href="tel:0924381507" class="w-full glass-panel border border-gold/30 text-slate-200 hover:text-gold-custom py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-xs font-semibold">
+                            <i class="fa-solid fa-phone text-gold-custom"></i>
+                            <span>اتصل بالرئيسي: 0924381507</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 5: بي إن إي (PNE) -->
+                <div class="glass-panel rounded-3xl p-6 border gold-border gold-glow transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                                الطراز المعتمد
+                            </span>
+                            <div class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-black text-xl font-bold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-black mb-1 text-white group-hover:text-gold-custom transition-colors">بي إن إي</h3>
+                        <p class="text-xs text-slate-400 font-mono mb-6 uppercase tracking-wider">PNE Innovation Edition</p>
+
+                        <div class="w-full h-40 rounded-2xl bg-gradient-to-br from-slate-900 via-rose-950 to-slate-900 border border-gold/20 flex flex-col items-center justify-center relative overflow-hidden mb-6 p-4 text-center">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0,transparent_70%)]"></div>
+                            <i class="fa-solid fa-bolt-lightning text-gold-custom text-4xl mb-2 opacity-80"></i>
+                            <span class="text-sm font-bold text-gold-light tracking-wide">كفاءة تشغيلية عالية</span>
+                            <span class="text-[10px] text-slate-400 mt-1">حسب المواصفات الرسمية</span>
+                        </div>
+
+                        <div class="space-y-3 mb-6 border-t border-slate-800 pt-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">سنة الصنع:</span>
+                                <span class="font-bold text-slate-200">قياسي / معتمد</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">الحالة:</span>
+                                <span class="text-amber-400 font-bold flex items-center gap-1"><i class="fa-solid fa-circle text-[8px]"></i> متاح للاستعلام</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">السعر المعتمد:</span>
+                                <span class="font-extrabold text-gold-custom text-base">السعر عند الطلب</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <button onclick="openOrderModal('بي إن إي (PNE)', 'السعر عند الطلب', 'متاح للاستعلام')" class="w-full gold-gradient-bg text-black font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>احجز أو اطلب الآن</span>
+                        </button>
+                        <a href="tel:0924381507" class="w-full glass-panel border border-gold/30 text-slate-200 hover:text-gold-custom py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-xs font-semibold">
+                            <i class="fa-solid fa-phone text-gold-custom"></i>
+                            <span>اتصل بالرئيسي: 0924381507</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 6: مارشال (Marshal) -->
+                <div class="glass-panel rounded-3xl p-6 border gold-border gold-glow transition-all duration-300 hover:-translate-y-2 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-600/20 text-gold-light border border-amber-600/30">
+                                الطراز الفاخر
+                            </span>
+                            <div class="w-12 h-12 rounded-2xl gold-gradient-bg flex items-center justify-center text-black text-xl font-bold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-black mb-1 text-white group-hover:text-gold-custom transition-colors">مارشال</h3>
+                        <p class="text-xs text-slate-400 font-mono mb-6 uppercase tracking-wider">Marshal Sovereign Edition</p>
+
+                        <div class="w-full h-40 rounded-2xl bg-gradient-to-br from-slate-900 via-amber-950 to-slate-900 border border-gold/20 flex flex-col items-center justify-center relative overflow-hidden mb-6 p-4 text-center">
+                            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1)_0,transparent_70%)]"></div>
+                            <i class="fa-solid fa-medal text-gold-custom text-4xl mb-2 opacity-80"></i>
+                            <span class="text-sm font-bold text-gold-light tracking-wide">هيبة وحضور طاغٍ</span>
+                            <span class="text-[10px] text-slate-400 mt-1">حسب المواصفات الرسمية</span>
+                        </div>
+
+                        <div class="space-y-3 mb-6 border-t border-slate-800 pt-4">
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">سنة الصنع:</span>
+                                <span class="font-bold text-slate-200">قياسي / معتمد</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">الحالة:</span>
+                                <span class="text-amber-400 font-bold flex items-center gap-1"><i class="fa-solid fa-circle text-[8px]"></i> متاح للاستعلام</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <span class="text-slate-400">السعر المعتمد:</span>
+                                <span class="font-extrabold text-gold-custom text-base">السعر عند الطلب</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <button onclick="openOrderModal('مارشال (Marshal)', 'السعر عند الطلب', 'متاح للاستعلام')" class="w-full gold-gradient-bg text-black font-bold py-3 rounded-xl shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span>احجز أو اطلب الآن</span>
+                        </button>
+                        <a href="tel:0924381507" class="w-full glass-panel border border-gold/30 text-slate-200 hover:text-gold-custom py-2.5 rounded-xl transition-colors flex items-center justify-center gap-2 text-xs font-semibold">
+                            <i class="fa-solid fa-phone text-gold-custom"></i>
+                            <span>اتصل بالرئيسي: 0924381507</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-darkBg border-t border-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-gold-custom text-sm font-bold tracking-widest uppercase mb-2 block">لماذا تختار معرضنا؟</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight mb-4">معايير الأساطير والفخامة</h2>
+                <div class="w-24 h-1 gold-gradient-bg mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-panel p-8 rounded-3xl border gold-border text-center hover:scale-105 transition-transform">
+                    <div class="w-16 h-16 rounded-2xl gold-gradient-bg mx-auto flex items-center justify-center text-black text-2xl font-bold mb-6 shadow-lg">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">ربط دقيق بجوجل شيتس</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        البيانات مطابقة تماماً للمستند الرسمي المعتمد دون أي تعديل أو زيادة في الأسعار والصور.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl border gold-border text-center hover:scale-105 transition-transform">
+                    <div class="w-16 h-16 rounded-2xl gold-gradient-bg mx-auto flex items-center justify-center text-black text-2xl font-bold mb-6 shadow-lg">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">تواصل فوري ومباشر</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        خط مباشر للعملاء على الرقم <span class="text-gold-custom font-bold dir-ltr inline-block">0924381507</span> مع دعم واتساب على مدار الساعة.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl border gold-border text-center hover:scale-105 transition-transform">
+                    <div class="w-16 h-16 rounded-2xl gold-gradient-bg mx-auto flex items-center justify-center text-black text-2xl font-bold mb-6 shadow-lg">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">تصميم أسطوري فاخر</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        تجربة مستخدم راقية تعكس هيبة وفخامة اقتناء أرقى مركبات التكاتك في السوق.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Footer Section -->
+    <footer id="contact" class="bg-[#070A10] border-t border-gold/20 pt-16 pb-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <div class="flex items-center space-x-3 space-x-reverse mb-6">
+                        <div class="w-12 h-12 rounded-xl gold-gradient-bg flex items-center justify-center text-black text-2xl font-black">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-black tracking-wider gold-gradient-text">معرض النخبة للتكاتك</span>
+                            <span class="block text-xs text-slate-400 tracking-widest uppercase">Luxury Tuktuk Showroom</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-light">
+                        نحن الوجهة الأولى لاقتناء أرقى وأفخم التكاتك الأصلية. نلتزم بالمصداقية التامة والبيانات الرسمية لخدمتكم بكل احترافية.
+                    </p>
+                    <div class="flex items-center space-x-4 space-x-reverse text-gold-custom">
+                        <a href="https://wa.me/249924381507" target="_blank" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center hover:bg-gold/20 transition-colors text-lg">
+                            <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                        </a>
+                        <a href="tel:0924381507" class="w-10 h-10 rounded-xl glass-panel flex items-center justify-center hover:bg-gold/20 transition-colors text-lg">
+                            <i class="fa-solid fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-8 rounded-3xl border gold-border">
+                    <h3 class="text-xl font-bold mb-4 text-gold-light flex items-center gap-2">
+                        <i class="fa-solid fa-headset text-gold-custom"></i>
+                        <span>اتصل بنا مباشرة</span>
+                    </h3>
+                    <p class="text-slate-300 text-sm mb-6">
+                        للحجز، الاستفسار، أو طلب تفاصيل إضافية عن أي طراز، يرجى التواصل عبر الرقم المعتمد:
+                    </p>
+                    <div class="bg-black/40 p-4 rounded-2xl border border-gold/30 flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-black font-bold">
+                                <i class="fa-solid fa-phone-volume"></i>
+                            </div>
+                            <div>
+                                <span class="block text-xs text-slate-400">رقم الهاتف الرسمي</span>
+                                <span class="text-lg font-black text-white dir-ltr inline-block">0924381507</span>
+                            </div>
+                        </div>
+                        <a href="tel:0924381507" class="gold-gradient-bg text-black font-bold px-4 py-2 rounded-xl text-xs hover:opacity-90">
+                            اتصال سريع
+                        </a>
+                    </div>
+                    <a href="https://wa.me/249924381507?text=مرحباً، أرغب في الاستفسار عن التكاتك الفاخرة" target="_blank" class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition-colors shadow-lg text-sm">
+                        <i class="fa-brands fa-whatsapp ml-2"></i> مراسلة فورية عبر واتساب
+                    </a>
+                </div>
+            </div>
+
+            <!-- Copyright Bar -->
+            <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500">
+                <p>© 2026 معرض النخبة للتكاتك الفاخرة. جميع البيانات مستخرجة من السجل الرسمي المعتمد.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp / Call Action Button -->
+    <div class="fixed bottom-6 left-6 z-50 flex flex-col gap-3">
+        <a href="https://wa.me/249924381507?text=مرحباً، أرغب في حجز توكتوك من المعرض" target="_blank" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full flex items-center justify-center text-2xl shadow-2xl transition-transform hover:scale-110" title="تواصل واتساب">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="tel:0924381507" class="w-14 h-14 gold-gradient-bg text-black rounded-full flex items-center justify-center text-xl shadow-2xl transition-transform hover:scale-110 font-black" title="اتصال هاتفي: 0924381507">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+    </div>
+
+    <!-- Interactive Order Modal -->
+    <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden p-4">
+        <div class="glass-panel max-w-md w-full rounded-3xl p-6 sm:p-8 border gold-border relative shadow-2xl animate-fade-in">
+            <button onclick="closeOrderModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 rounded-2xl gold-gradient-bg mx-auto flex items-center justify-center text-black text-2xl font-bold mb-3">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+                <h3 class="text-2xl font-black text-white" id="modal-title">طلب حجز توكتوك</h3>
+                <p class="text-xs text-slate-400 mt-1">تأكيد طلب الشراء أو الاستفسار مع إدارة المعرض</p>
+            </div>
+
+            <div class="space-y-4 mb-6">
+                <div class="bg-black/40 p-4 rounded-2xl border border-gold/20 space-y-2">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-400">الطراز المختار:</span>
+                        <span class="font-bold text-white" id="modal-item-name">-</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-400">السعر المعتمد:</span>
+                        <span class="font-bold text-gold-custom" id="modal-item-price">-</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-400">المعلومات الإضافية:</span>
+                        <span class="font-bold text-slate-200" id="modal-item-model">-</span>
+                    </div>
+                </div>
+
+                <form onsubmit="submitOrder(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">الاسم الكريم</label>
+                        <input type="text" id="client-name" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-gold-custom focus:outline-none" placeholder="أدخل اسمك الكامل">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">رقم الهاتف للتواصل</label>
+                        <input type="tel" id="client-phone" required class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:border-gold-custom focus:outline-none" placeholder="رقم هاتفك">
+                    </div>
+                    <button type="submit" class="w-full gold-gradient-bg text-black font-extrabold py-3.5 rounded-xl shadow-lg hover:opacity-90 transition-opacity text-base flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>إرسال الطلب عبر الواتساب</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="text-center border-t border-slate-800 pt-4">
+                <p class="text-xs text-slate-400">أو اتصل مباشرة بالرقم المعتمد:</p>
+                <a href="tel:0924381507" class="text-gold-custom font-bold text-lg dir-ltr inline-block mt-1">0924381507</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass-panel border border-emerald-500/40 px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-32 opacity-0 transition-all duration-300">
+        <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <h4 class="font-bold text-white text-sm">تم تجهيز الطلب بنجاح</h4>
+            <p class="text-xs text-slate-400">جاري تحويلك إلى خدمة العملاء (0924381507)...</p>
+        </div>
+    </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal Logic
+        let selectedProduct = {};
+
+        function openOrderModal(name, price, model) {
+            selectedProduct = { name, price, model };
+            document.getElementById('modal-item-name').innerText = name;
+            document.getElementById('modal-item-price').innerText = price;
+            document.getElementById('modal-item-model').innerText = model;
+            document.getElementById('order-modal').classList.remove('hidden');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        function submitOrder(e) {
+            e.preventDefault();
+            const clientName = document.getElementById('client-name').value;
+            const clientPhone = document.getElementById('client-phone').value;
+
+            const message = `مرحباً، أرغب في حجز توكتوك:\n- الطراز: ${selectedProduct.name}\n- السعر: ${selectedProduct.price}\n- التفاصيل: ${selectedProduct.model}\n- اسم العميل: ${clientName}\n- رقم الهاتف: ${clientPhone}`;
+            
+            const whatsappUrl = `https://wa.me/249924381507?text=${encodeURIComponent(message)}`;
+
+            // Show Toast
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-32', 'opacity-0');
+            
+            closeOrderModal();
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-32', 'opacity-0');
+                window.open(whatsappUrl, '_blank');
+            }, 1500);
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('order-modal');
+            if (e.target === modal) {
+                closeOrderModal();
+            }
+        });
+    </script>
+</body>
+</html>
